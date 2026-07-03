@@ -33,6 +33,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.2);
   --transition: 0.2s ease;
 }
 
@@ -187,36 +188,14 @@ ul {
   overflow: hidden;
 }
 
-/* Photo2 Background Accent */
-.hero__bg-accent {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.hero__bg-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.15;
-}
-
-.hero__bg-overlay {
+.hero__bg-base {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to left,
-    transparent 0%,
-    var(--color-navy-dark) 100%
-  );
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero__container {
@@ -227,19 +206,24 @@ ul {
   z-index: 1;
 }
 
+/* Three-column layout: [Profile] [Text] [Photo2] */
 .hero__content {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
 }
 
-/* Rounded Rectangle Photo Card */
-.hero__card {
+/* Left column: Profile photo card */
+.hero__left {
   flex-shrink: 0;
-  width: 300px;
+  width: 260px;
+}
+
+.hero__card {
+  width: 100%;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-xl);
   border: 3px solid rgba(255, 255, 255, 0.15);
   background: var(--color-navy-light);
 }
@@ -273,8 +257,10 @@ ul {
   font-weight: 500;
 }
 
+/* Center column: Text content */
 .hero__text {
   flex: 1;
+  max-width: 520px;
 }
 
 .hero__subtitle {
@@ -305,7 +291,7 @@ ul {
   font-size: 1.05rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.75);
-  max-width: 600px;
+  max-width: 500px;
   margin-bottom: 32px;
 }
 
@@ -313,6 +299,34 @@ ul {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Right column: Photo2 framed panel (fully visible, no cropping) */
+.hero__right {
+  flex-shrink: 0;
+  width: 320px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.hero__photo2-frame {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.hero__photo2 {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  aspect-ratio: auto;
 }
 
 /* --- Buttons --- */
@@ -589,20 +603,27 @@ ul {
   opacity: 0.6;
 }
 
-/* --- Responsive: Tablet & Mobile --- */
-@media (max-width: 900px) {
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+  .hero__right {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1000px) {
   .hero__content {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero__left {
+    width: 220px;
+  }
+
+  .hero__text {
+    flex: 1 1 100%;
+    max-width: 100%;
     text-align: center;
-    gap: 40px;
-  }
-
-  .hero__card {
-    width: 240px;
-  }
-
-  .hero__title {
-    font-size: 2rem;
   }
 
   .hero__intro {
@@ -613,21 +634,14 @@ ul {
     justify-content: center;
   }
 
+  .hero__right {
+    width: 100%;
+    max-width: 500px;
+    align-self: auto;
+  }
+
   .section__subtitle {
     max-width: 100%;
-  }
-
-  .hero__bg-accent {
-    width: 100%;
-    opacity: 0.5;
-  }
-
-  .hero__bg-overlay {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      var(--color-navy-dark) 100%
-    );
   }
 }
 
@@ -673,8 +687,8 @@ ul {
     padding: calc(var(--header-height) + 40px) 20px 40px;
   }
 
-  .hero__card {
-    width: 200px;
+  .hero__left {
+    width: 180px;
   }
 
   .hero__title {
@@ -718,11 +732,15 @@ ul {
   .appointment__card {
     padding: 28px 20px;
   }
+
+  .hero__right {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero__card {
-    width: 180px;
+  .hero__left {
+    width: 160px;
   }
 
   .hero__title {

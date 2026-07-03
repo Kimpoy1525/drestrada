@@ -5,37 +5,35 @@ const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL || 'https://www.facebook.
 const Hero: React.FC = () => {
   return (
     <section id="home" className="hero">
-      <div className="hero__bg-accent">
-        <img
-          src="/Photo2.jpg"
-          alt=""
-          className="hero__bg-image"
-          aria-hidden="true"
-        />
-        <div className="hero__bg-overlay" />
-      </div>
+      {/* Decorative background gradient (no image cropping) */}
+      <div className="hero__bg-base" />
       <div className="hero__container">
         <div className="hero__content">
-          <div className="hero__card">
-            <div className="hero__photo-area">
-              <img
-                src="/Profile.jpg"
-                alt="Dr. James Raphael T. Estrada"
-                className="hero__photo"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = 'none';
-                  const placeholder = target.nextElementSibling as HTMLElement;
-                  if (placeholder) {
-                    placeholder.style.display = 'flex';
-                  }
-                }}
-              />
-              <div className="hero__photo-placeholder" style={{ display: 'none' }}>
-                <span>Photo</span>
+          {/* Left: Profile Photo Card */}
+          <div className="hero__left">
+            <div className="hero__card">
+              <div className="hero__photo-area">
+                <img
+                  src="/Profile.jpg"
+                  alt="Dr. James Raphael T. Estrada"
+                  className="hero__photo"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = 'none';
+                    const placeholder = target.nextElementSibling as HTMLElement;
+                    if (placeholder) {
+                      placeholder.style.display = 'flex';
+                    }
+                  }}
+                />
+                <div className="hero__photo-placeholder" style={{ display: 'none' }}>
+                  <span>Photo</span>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Center: Text Content */}
           <div className="hero__text">
             <p className="hero__subtitle">Internal Medicine – Diabetology Specialist</p>
             <h1 className="hero__title">Dr. James Raphael T. Estrada</h1>
@@ -64,6 +62,18 @@ const Hero: React.FC = () => {
               >
                 Message on Facebook
               </a>
+            </div>
+          </div>
+
+          {/* Right: Photo2 Framed Panel (fully visible, no cropping) */}
+          <div className="hero__right">
+            <div className="hero__photo2-frame">
+              <img
+                src="/Photo2.jpg"
+                alt=""
+                className="hero__photo2"
+                aria-hidden="true"
+              />
             </div>
           </div>
         </div>
