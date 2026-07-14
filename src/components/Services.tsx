@@ -1,67 +1,25 @@
-import React from 'react';
-
 const SERVICES = [
-  {
-    title: 'Diabetes Screening and Consultation',
-    description:
-      'Comprehensive screening, diagnosis, and consultation for diabetes and pre-diabetic conditions with personalized management planning.',
-  },
-  {
-    title: 'Diabetes Follow-Up Care',
-    description:
-      'Ongoing monitoring and follow-up care for patients with diabetes, including medication review, blood sugar assessment, and lifestyle guidance.',
-  },
-  {
-    title: 'Blood Sugar Evaluation',
-    description:
-      'Thorough evaluation of blood glucose levels and related metabolic parameters to assess and manage glycemic control.',
-  },
-  {
-    title: 'Hypertension Evaluation and Management',
-    description:
-      'Assessment, monitoring, and management of high blood pressure to reduce cardiovascular risk and promote long-term health.',
-  },
-  {
-    title: 'Adult Internal Medicine Consultation',
-    description:
-      'Comprehensive evaluation and management of adult health concerns, including routine checkups and medical assessments.',
-  },
-  {
-    title: 'Preventive Health Checkups',
-    description:
-      'Routine health screenings and preventive care aimed at early detection and health maintenance.',
-  },
-  {
-    title: 'Medical Clearance and Risk Assessment',
-    description:
-      'Pre-procedure medical clearance and risk evaluation to ensure patient safety before surgical or diagnostic procedures.',
-  },
-  {
-    title: 'Chronic Disease Follow-Up',
-    description:
-      'Ongoing care and monitoring for patients with chronic illnesses such as heart disease, kidney disease, and respiratory conditions.',
-  },
-] as const;
+  { icon: '◒', title: 'Diabetes Care', text: 'Screening, diagnosis, blood sugar evaluation, medication review, and long-term management.' },
+  { icon: '♡', title: 'Hypertension Care', text: 'Blood pressure assessment and practical management to help lower cardiovascular risk.' },
+  { icon: '✦', title: 'Adult Consultation', text: 'Thorough evaluation of new symptoms, acute concerns, and general adult health needs.' },
+  { icon: '⊕', title: 'Preventive Checkups', text: 'Age-appropriate screening, risk assessment, and guidance for maintaining good health.' },
+  { icon: '↻', title: 'Chronic Disease Follow-up', text: 'Ongoing monitoring for multiple or complex conditions with coordinated care plans.' },
+  { icon: '✓', title: 'Medical Clearance', text: 'Pre-procedure evaluation and individualized medical risk assessment when appropriate.' },
+];
 
-const Services: React.FC = () => {
+export default function Services() {
   return (
     <section id="services" className="section services">
-      <div className="section__container">
-        <h2 className="section__title">Services</h2>
-        <p className="section__subtitle">
-          Dr. Estrada provides the following internal medicine and diabetology consultation services:
-        </p>
-        <div className="services__grid">
-          {SERVICES.map((service) => (
-            <div key={service.title} className="service-card">
-              <h3 className="service-card__title">{service.title}</h3>
-              <p className="service-card__description">{service.description}</p>
-            </div>
-          ))}
+      <div className="container">
+        <div className="section-heading">
+          <div><div className="eyebrow"><span /> How we can help</div><h2>Care for today.<br /><em>Health for tomorrow.</em></h2></div>
+          <p>From prevention to long-term condition management, each consultation starts with your needs and ends with a plan you can understand.</p>
         </div>
+        <div className="services__grid">
+          {SERVICES.map((service, i) => <article className="service-card" key={service.title}><span className="service-card__number">0{i + 1}</span><div className="service-card__icon">{service.icon}</div><h3>{service.title}</h3><p>{service.text}</p></article>)}
+        </div>
+        <p className="services__note">Not sure which service you need? <a href="#appointment">Send a brief inquiry →</a></p>
       </div>
     </section>
   );
-};
-
-export default Services;
+}

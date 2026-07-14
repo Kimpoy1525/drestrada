@@ -1,82 +1,31 @@
-import React from 'react';
-
 const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL || 'https://www.facebook.com/profile.php?id=61577348129317';
 
-const Hero: React.FC = () => {
+export default function Hero() {
   return (
     <section id="home" className="hero">
-      {/* Large Photo2 background layer (fully visible, not cropped) */}
-      <div className="hero__photo2-bg" aria-hidden="true">
-        <img
-          src="/Photo2.jpg"
-          alt=""
-          className="hero__photo2-img"
-          aria-hidden="true"
-        />
-      </div>
-      {/* Dark gradient overlay for readability */}
-      <div className="hero__overlay" />
-      <div className="hero__container">
-        <div className="hero__content">
-          {/* Left: Profile Photo Card */}
-          <div className="hero__left">
-            <div className="hero__card">
-              <div className="hero__photo-area">
-                <img
-                  src="/Profile.jpg"
-                  alt="Dr. James Raphael T. Estrada"
-                  className="hero__photo"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                    const placeholder = target.nextElementSibling as HTMLElement;
-                    if (placeholder) {
-                      placeholder.style.display = 'flex';
-                    }
-                  }}
-                />
-                <div className="hero__photo-placeholder" style={{ display: 'none' }}>
-                  <span>Photo</span>
-                </div>
-              </div>
-            </div>
+      <div className="hero__glow" aria-hidden="true" />
+      <div className="container hero__grid">
+        <div className="hero__copy">
+          <div className="eyebrow"><span /> Internal Medicine & Diabetology</div>
+          <h1>Thoughtful care for a <em>healthier life.</em></h1>
+          <p className="hero__lead">Personalized, evidence-based care for adults—focused on prevention, long-term wellness, and helping you feel heard at every visit.</p>
+          <div className="hero__actions">
+            <a className="button button--primary" href={FACEBOOK_URL} target="_blank" rel="noreferrer">Request an appointment <span>→</span></a>
+            <a className="button button--ghost" href="#services">Explore services</a>
           </div>
-
-          {/* Right: Text Content */}
-          <div className="hero__text">
-            <p className="hero__subtitle">Internal Medicine – Diabetology Specialist</p>
-            <h1 className="hero__title">Dr. James Raphael T. Estrada</h1>
-            <p className="hero__credential">
-              Internal Medicine Graduate, Board Passer, and Diabetology Specialist
-            </p>
-            <p className="hero__intro">
-              Dedicated to providing compassionate, evidence-based internal medicine
-              consultation services. Committed to helping you achieve and maintain
-              your best health through patient-centered care.
-            </p>
-            <div className="hero__actions">
-              <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--primary"
-              >
-                Request an Appointment
-              </a>
-              <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--secondary"
-              >
-                Message on Facebook
-              </a>
-            </div>
+          <div className="hero__trust" aria-label="Care qualities">
+            <div><b>✓</b><span><strong>Board passer</strong><small>Internal Medicine</small></span></div>
+            <div><b>✓</b><span><strong>Personalized</strong><small>Patient-first care</small></span></div>
+            <div><b>✓</b><span><strong>Continuous</strong><small>Long-term support</small></span></div>
           </div>
         </div>
+        <div className="hero__visual">
+          <div className="hero__image-wrap"><img src="/Profile.jpg" alt="Dr. James Raphael T. Estrada" /></div>
+          <div className="hero__name-card"><span>Meet your doctor</span><strong>James Raphael T. Estrada, MD</strong><small>Internal Medicine · Diabetology Specialist</small></div>
+          <div className="hero__note"><span>♡</span><p><strong>Compassion-led care</strong><br />Every patient, every stage.</p></div>
+        </div>
       </div>
+      <div className="hero__scroll">Scroll to learn more <span>↓</span></div>
     </section>
   );
-};
-
-export default Hero;
+}

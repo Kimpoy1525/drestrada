@@ -1,62 +1,31 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const NAV_ITEMS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Appointment', href: '#appointment' },
-  { label: 'Contact', href: '#contact' },
-] as const;
+const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL || 'https://www.facebook.com/profile.php?id=61577348129317';
+const NAV_ITEMS = [['About', '#about'], ['Services', '#services'], ['Appointments', '#appointment'], ['Contact', '#contact']] as const;
 
-const Header: React.FC = () => {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute('href');
-    if (href) {
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    const close = () => setMenuOpen(false);
+    window.addEventListener('resize', close);
+    return () => window.removeEventListener('resize', close);
+  }, []);
 
   return (
     <header className="header">
       <div className="header__container">
-        <a href="#home" className="header__logo" onClick={handleNavClick}>
-          Dr. James Raphael T. Estrada
+        <a href="#home" className="brand" aria-label="Dr. Estrada home">
+          <span className="brand__mark" aria-hidden="true">JE</span>
+          <span><strong>Dr. James Estrada</strong><small>Internal Medicine · Diabetology</small></span>
         </a>
-        <button
-          className={`header__menu-btn ${menuOpen ? 'header__menu-btn--open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={menuOpen}
-        >
-          <span className="header__menu-bar" />
-          <span className="header__menu-bar" />
-          <span className="header__menu-bar" />
+        <button className={`menu-btn ${menuOpen ? 'is-open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen}>
+          <span /><span /><span />
         </button>
-        <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} aria-label="Main navigation">
-          <ul className="header__nav-list">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.label} className="header__nav-item">
-                <a
-                  href={item.href}
-                  className="header__nav-link"
-                  onClick={handleNavClick}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <nav className={`nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
+          {NAV_ITEMS.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
+          <a className="nav__cta" href={FACEBOOK_URL} target="_blank" rel="noreferrer">Book a consultation</a>
         </nav>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

@@ -1,36 +1,20 @@
-import React from 'react';
-
-const About: React.FC = () => {
+export default function About() {
   return (
     <section id="about" className="section about">
-      <div className="section__container">
-        <h2 className="section__title">About</h2>
-        <div className="about__content">
-          <div className="about__card">
-            <p className="about__text">
-              Dr. James Raphael T. Estrada is an Internal Medicine graduate, board passer,
-              and Diabetology Specialist. He provides adult medical consultation with a
-              focus on evidence-based, patient-centered care, including the evaluation and
-              follow-up of common chronic conditions such as diabetes, hypertension, and
-              other internal medicine concerns.
-            </p>
-            <p className="about__text">
-              Internal Medicine focuses on the prevention, diagnosis, and non-surgical
-              treatment of adult diseases. As an internist and diabetology specialist,
-              Dr. Estrada is trained to manage a wide range of health conditions, from
-              acute illnesses to complex chronic diseases, with a holistic approach that
-              considers the whole person.
-            </p>
-            <p className="about__text">
-              Dr. Estrada believes in building trusting relationships with patients
-              through open communication, thorough evaluation, and a commitment to
-              continuous learning in the ever-evolving field of medicine.
-            </p>
+      <div className="container about__grid">
+        <div className="about__image"><img src="/Photo2.jpg" alt="Dr. Estrada providing patient-centered medical care" /></div>
+        <div className="about__copy">
+          <div className="eyebrow"><span /> About the doctor</div>
+          <h2>Care that sees the <em>whole person.</em></h2>
+          <p className="about__intro">Dr. James Raphael T. Estrada is an Internal Medicine graduate, board passer, and Diabetology Specialist caring for adult patients with both everyday and complex health needs.</p>
+          <p>His approach combines careful evaluation, clear conversations, and practical treatment plans that fit each patient’s goals and daily life.</p>
+          <div className="values">
+            <div><span>01</span><p><strong>Listen first</strong><small>Your questions and concerns guide the conversation.</small></p></div>
+            <div><span>02</span><p><strong>Explain clearly</strong><small>Understand your condition and your options.</small></p></div>
+            <div><span>03</span><p><strong>Plan together</strong><small>Build a realistic path toward better health.</small></p></div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}
