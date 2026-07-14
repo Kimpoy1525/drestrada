@@ -2,7 +2,7 @@ export default function About() {
   return (
     <section id="about" className="section about">
       <div className="container about__grid">
-        <div className="about__image"><img src="/Photo2.jpg" alt="Dr. Estrada providing patient-centered medical care" /></div>
+        <div className="about__image"><img src="/Profile.jpg" alt="Portrait of Dr. James Raphael T. Estrada" /></div>
         <div className="about__copy">
           <div className="eyebrow"><span /> About the doctor</div>
           <h2>Care that sees the <em>whole person.</em></h2>
