@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL || 'https://www.facebook.com/profile.php?id=61577348129317';
-const NAV_ITEMS = [['About', '#about'], ['Services', '#services'], ['Appointments', '#appointment'], ['Contact', '#contact']] as const;
+const NAV_ITEMS = [['About', '#about'], ['Services', '#services'], ['Clinics', '#clinics'], ['Appointments', '#appointment'], ['Contact', '#contact']] as const;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
